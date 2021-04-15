@@ -19,8 +19,7 @@
 - has_many :items
 - has_many :purchases
 
-<br />
-<br />
+
 
 ## items テーブル
 
@@ -41,8 +40,7 @@
 - belongs_to :user
 - has_one :purchase
 
-<br />
-<br />
+
 
 ## purchase テーブル
 
@@ -57,8 +55,7 @@
  - belongs_to :item
  - has_one :shipping_adress
 
-<br />
-<br />
+
 
  ## shipping_adress テーブル
 
