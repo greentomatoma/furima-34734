@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  has_many :items
+  
   with_options presence: true do
     validates :nickname
     validates :last_name, :first_name, format: { with: /\A[ぁ-んァ-ヶー-龥々ー]+\z/, message: "Full-width characters" }
