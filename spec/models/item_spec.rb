@@ -88,29 +88,29 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
       end
       it 'カテゴリーの選択がされていない' do
-        @item.category_id = nil
+        @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category must be other than 0")
       end
       it '商品の状態の状態についての情報が選択されていない' do
-        @item.status_id = nil
+        @item.status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status can't be blank")
+        expect(@item.errors.full_messages).to include("Status must be other than 0")
       end
       it '配送料の負担についての情報が選択されていない' do
-        @item.delivery_charge_id = nil
+        @item.delivery_charge_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery charge must be other than 0")
       end
       it '発送元の地域についての情報が選択されていない' do
-        @item.region_id = nil
+        @item.region_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Region can't be blank")
+        expect(@item.errors.full_messages).to include("Region must be other than 0")
       end
       it '発送までの日数についての情報が選択されていない' do
-        @item.delivery_days_id = nil
+        @item.delivery_days_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery days can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery days must be other than 0")
       end
       it '販売価格の入力がされていない' do
         @item.price = ''
