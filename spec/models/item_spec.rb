@@ -15,7 +15,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it '商品名が40文字以内で入力されている' do
-        @item.description = 'あ' * 40
+        @item.name = 'あ' * 40
         expect(@item).to be_valid
       end
       it '商品の説明が1000文字以内で入力されている' do
