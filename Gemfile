@@ -35,6 +35,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'gimei'
+  gem 'rubocop-faker'
 end
 
 group :development do
@@ -60,3 +61,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'devise'
+gem 'active_hash'
