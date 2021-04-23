@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_furima, only: [:show, :edit, :create, :update]
   before_action :prevent_url, only: [:edit, :update]
   
