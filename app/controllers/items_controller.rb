@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_furima, only: [:show, :edit, :create, :update, :destroy]
+  before_action :set_furima, only: [:show, :edit, :update, :destroy]
   before_action :prevent_url, only: [:edit, :update, :destroy]
   
   def index
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
   def update
     @item.update(item_params)
-    if @item.save
+    if @item.update
       redirect_to items_path
     else
       render :edit
