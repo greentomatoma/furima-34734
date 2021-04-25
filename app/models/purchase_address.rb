@@ -1,5 +1,5 @@
 class PurchaseAddress
-  include ActiveModl::Model
+  include ActiveModel::Model
   attr_accessor :user_id, :item_id, :postcode, :region_id, :city, :block, :building, :phone_number
 
   with_options presence: true do
@@ -9,12 +9,13 @@ class PurchaseAddress
     validates :region_id, numericality: { other_than: 0 }
     validates :city
     validates :block
-    validates :phone_number, numericality: { only_integer: true }, length: { maximum: 11 }
+    VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
+    validates :phone_number, format: { with: VALID_PHONE_REGEX }
   end
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
-    Address.create(
+    ShippingAddress.create(
       postcode: postcode, region_id: region_id, city: city, block: block, building: building, phone_number: phone_number, purchase_id: purchase.id
     )
   end
