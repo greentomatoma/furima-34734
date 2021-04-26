@@ -1,6 +1,6 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postcode, :region_id, :city, :block, :building, :phone_number
+  attr_accessor :user_id, :item_id, :postcode, :region_id, :city, :block, :building, :phone_number, :token
 
   with_options presence: true do
     validates :user_id
@@ -11,6 +11,7 @@ class PurchaseAddress
     validates :block
     VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
     validates :phone_number, format: { with: VALID_PHONE_REGEX, message: 'Input only number'}
+    validates :token
   end
 
   def save

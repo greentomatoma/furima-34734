@@ -10,6 +10,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase_address = PurchaseAddress.new(purchase_address_params)
     if @purchase_address.valid?
+      purchase_item
       @purchase_address.save
       redirect_to root_path
     else
@@ -17,18 +18,28 @@ class PurchasesController < ApplicationController
     end
   end
 
+  
   private
 
   def purchase_address_params
-    params.require(:purchase_address).permit(:postcode, :region_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require( :purchase_address ).permit( :postcode, :region_id, :city, :block, :building, :phone_number ).merge( user_id: current_user.id, item_id: params[:item_id], token: params[:token] )
   end
 
   def set_furima
-    @item = Item.find(params[:item_id])
+    @item = Item.find( params[:item_id] )
+  end
+
+  def purchase_item
+    @item = Item.find( params[:item_id] )
+    Payjp.api_key = ENV["FURIMA_PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+    amount: @item.price,
+    card: purchase_address_params[:token],
+    currency: 'jpy'
+  )
   end
 
   # def prevent_url
-  #   @item = Item.find(params[:item_id])
-  #   redirect_to root_path if current_user == @item.user_id
+  #   redirect_to root_path if current_user.id == purchase.user_id
   # end
 end
