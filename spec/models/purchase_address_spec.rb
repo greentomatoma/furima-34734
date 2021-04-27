@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PurchaseAddress, type: :model do
-
   describe '配送先住所の保存' do
-
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
@@ -30,12 +28,6 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'phone_numberは半角数字で数値のみ入力されている' do
         @purchase_address.phone_number = '09012345678'
         expect(@purchase_address).to be_valid
-      end
-      it 'user_idが紐づいている' do
-        
-      end
-      it 'item_idが紐づいている' do
-      
       end
     end
 
@@ -89,6 +81,11 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.item_id = nil
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'tokenが入力されていない' do
+        @purchase_address.token = ''
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
