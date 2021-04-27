@@ -9,8 +9,8 @@ class PurchaseAddress
     validates :region_id, numericality: { other_than: 0, message: 'Select' }
     validates :city
     validates :block
-    VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
-    validates :phone_number, format: { with: VALID_PHONE_REGEX, message: 'Input only number'}
+    VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/.freeze
+    validates :phone_number, format: { with: VALID_PHONE_REGEX, message: 'Input only number' }
     validates :token
   end
 
