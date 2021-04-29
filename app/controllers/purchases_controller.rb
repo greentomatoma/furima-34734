@@ -31,7 +31,6 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_item
-    set_furima
     Payjp.api_key = ENV['FURIMA_PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
