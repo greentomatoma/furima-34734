@@ -72,6 +72,16 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
       end
+      it 'phone_numberが12桁以上で入力されている' do
+        @purchase_address.phone_number = '090123456789'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
+      end
+      it 'phone_numberが英字混合で入力されている' do
+        @purchase_address.phone_number = '0901234567a'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
+      end
       it 'user_idが紐づいてない' do
         @purchase_address.user_id = nil
         @purchase_address.valid?
