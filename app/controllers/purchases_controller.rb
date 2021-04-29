@@ -1,12 +1,10 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_furima, only: [:index, :create]
+  before_action :prevent_url, only: [:index, :create]
 
   def index
     @purchase_address = PurchaseAddress.new
-    if current_user.id == @item.user_id || @item.purchase != nil
-      redirect_to root_path
-    end
   end
 
   def create
@@ -33,12 +31,18 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_item
-    @item = Item.find(params[:item_id])
+    set_furima
     Payjp.api_key = ENV['FURIMA_PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: purchase_address_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def prevent_url
+    if current_user.id == @item.user_id || @item.purchase != nil
+      redirect_to root_path
+    end
   end
 end
