@@ -23,17 +23,17 @@
 
 ## items テーブル
 
-| Colum              | Type          | Options                        |
-| ------------------ | ------------- | ------------------------------ |
-| name               | string        | null: false                    |
-| description        | varchar(1000) | null: false                    |
-| category_id        | string        | null: false                    |
-| status_id          | string        | null: false                    |
-| delivery_charge_id | string        | null: false                    |
-| region_id          | string        | null: false                    |
-| delivery_days_id   | string        | null: false                    |
-| price              | integer       | null: false                    |
-| user               | references    | null: false, foreign_key: true |
+| Colum              | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| description        | string     | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| region_id          | integer    | null: false                    |
+| delivery_days_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -53,16 +53,16 @@
 
  - belongs_to :user
  - belongs_to :item
- - has_one :shipping_adress
+ - has_one :shipping_address
 
 
 
- ## shipping_adress テーブル
+ ## shipping_address テーブル
 
 | Colum        | Type        | Options                        |
 | ------------ | ----------- | ------------------------------ |
-| postcode     | varchar(8)  | null: false                    |
-| prefecture   | string      | null: false                    |
+| postcode     | string      | null: false                    |
+| region_id    | integer     | null: false                    |
 | city         | string      | null: false                    |
 | block        | string      | null: false                    |
 | building     | string      |                                |
