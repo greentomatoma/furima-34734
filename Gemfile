@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -71,7 +72,7 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'devise'
 gem 'active_hash'
-gem 'pry-rails'
 gem 'payjp'
 gem 'aws-sdk-s3', require: false
 gem 'rails-i18n'
+gem 'ransack'
