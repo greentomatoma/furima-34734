@@ -35,67 +35,67 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'postcodeが入力されていない' do
         @purchase_address.postcode = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postcode can't be blank")
+        expect(@purchase_address.errors.full_messages).to include('郵便番号を入力してください')
       end
       it 'postcodeにハイフンが含まれていない' do
         @purchase_address.postcode = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Postcode Input correctly')
+        expect(@purchase_address.errors.full_messages).to include('郵便番号はハイフンを含めた半角数字で入力してください')
       end
       it 'postcodeが全角数字で入力されている' do
         @purchase_address.postcode = '１２３４５６７'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Postcode Input correctly')
+        expect(@purchase_address.errors.full_messages).to include('郵便番号はハイフンを含めた半角数字で入力してください')
       end
       it 'region_idが選択されていない' do
         @purchase_address.region_id = 0
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Region Select')
+        expect(@purchase_address.errors.full_messages).to include('都道府県を選択してください')
       end
       it 'cityが入力されていない' do
         @purchase_address.city = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("City can't be blank")
+        expect(@purchase_address.errors.full_messages).to include('市区町村を入力してください')
       end
       it 'blockが入力されていない' do
         @purchase_address.block = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Block can't be blank")
+        expect(@purchase_address.errors.full_messages).to include('番地を入力してください')
       end
       it 'phone_numberが入力されていない' do
         @purchase_address.phone_number = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank")
+        expect(@purchase_address.errors.full_messages).to include('電話番号を入力してください')
       end
       it 'phone_numberが全角数字で入力されている' do
         @purchase_address.phone_number = '０９０１２３４５６７８'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
+        expect(@purchase_address.errors.full_messages).to include('電話番号は半角数字のみで入力してください')
       end
       it 'phone_numberが12桁以上で入力されている' do
         @purchase_address.phone_number = '090123456789'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
+        expect(@purchase_address.errors.full_messages).to include('電話番号は半角数字のみで入力してください')
       end
       it 'phone_numberが英字混合で入力されている' do
         @purchase_address.phone_number = '0901234567a'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
+        expect(@purchase_address.errors.full_messages).to include('電話番号は半角数字のみで入力してください')
       end
       it 'user_idが紐づいてない' do
         @purchase_address.user_id = nil
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("User can't be blank")
+        expect(@purchase_address.errors.full_messages).to include('Userを入力してください')
       end
       it 'item_idが紐づいてない' do
         @purchase_address.item_id = nil
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
+        expect(@purchase_address.errors.full_messages).to include('Itemを入力してください')
       end
       it 'tokenが入力されていない' do
         @purchase_address.token = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
+        expect(@purchase_address.errors.full_messages).to include('クレジット情報を入力してください')
       end
     end
   end
